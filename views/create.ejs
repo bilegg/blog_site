@@ -6,7 +6,7 @@
     <body>
         <%- include('./partials/nav.ejs') %>
 
-        <div class="createBlog content">
+        <div class="create-blog content">
             <form action="">
                 <label for="title">Blog title:</label>
                 <input type="text" id="title" required />
@@ -14,7 +14,9 @@
                 <input type="text" id="snippet" required />
                 <label for="body">Blog body:</label>
                 <textarea type="text" id="body" required></textarea>
-                <button type="submit">Submit</button>
+                <div class="button-holder">
+                    <button type="submit">Submit</button>
+                </div>
             </form>
         </div>
 

@@ -1,11 +1,28 @@
 const express = require("express");
 const app = express();
+const morgan = require("morgan");
+const mongoose = require("mongoose");
 
+// connect to mongodb
+const dbURI =
+    "mongodb+srv://admin:oT4BP8OdEzy86SLA@mycluster.jkeio.mongodb.net/project?retryWrites=true&w=majority";
+mongoose
+    .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then((result) => {
+		console.log("connected to db");
+		
+        app.listen(3000, () => {
+            console.log("server starting at port 3000");
+        });
+    })
+    .catch((err) => {
+        console.log(err);
+    });
 app.set("view engine", "ejs");
 
-app.listen(3000, () => {
-    console.log("server starting at port 3000");
-});
+app.use(morgan("dev"));
+
+app.use(express.static("public"));
 
 app.get("/", (req, res) => {
     const blogs = [
@@ -41,7 +58,7 @@ app.get("/blogs/create", (req, res) => {
 });
 
 app.use((req, res) => {
-    res.render("404", {
+    res.status(404).render("404", {
         title: "Error",
     });
 });
