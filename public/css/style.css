@@ -41,6 +41,8 @@ ul {
 nav li {
 	list-style-type: none;
 	margin-left: 20px;
+	font-size: 1.5em;
+	font-style: oblique;
 }
 
 nav li:first-child {
@@ -48,7 +50,7 @@ nav li:first-child {
 }
 
 nav h1 {
-	font-size: 3em;
+	font-size: 4.3em;
 }
 
 nav .mainPage {
@@ -82,7 +84,59 @@ h3 {
 
 /* index styles */
 
+.blogs a {
+	display: block;
+	border-left: 6px solid crimson;
+	margin: 20px 40px;
+	padding-left: 30px
+}
+
+.blogs a:hover h3{
+	color: crimson;
+}
+
+.blogs h2 {
+	font-size: 2.7em;
+}
+
+.blogs h3 {
+	font-size: 2em;
+}
+
+.blogs p {
+	font-size: 1.5em;
+}
+
 /* details styles */
+.details{
+	text-align: center;
+	overflow: auto;
+}
+.details h2{
+	font-size: 3em;
+}
+
+.details p{
+	font-size: 2em;
+}
+
+.delete{
+	display: inline-block;
+	border: 2px solid black;
+	border-radius: 5px;
+	padding: 15px;
+	margin-top: 50px;
+	width: 80px;
+	text-align: center;
+	font-size: 1.5em;
+}
+
+.delete:hover{
+	background-color: rgb(219, 215, 215);
+	font-weight: bolder;
+	cursor: pointer;
+}
+
 
 /* create styles */
 
