@@ -40,7 +40,7 @@ app.get("/about", (req, res) => {
 
 app.get("/blogs/create", (req, res) => {
     res.render("create", {
-        title: "Create a new blog",
+        title: "New blog",
     });
 });
 
@@ -50,7 +50,7 @@ app.get("/blogs", (req, res) => {
         .sort({ createdAt: -1 })
         .then((result) => {
             res.render("index", {
-                title: "My blog",
+                title: "Home",
                 blogs: result,
             });
         })

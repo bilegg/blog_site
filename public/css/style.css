@@ -41,7 +41,7 @@ ul {
 nav li {
 	list-style-type: none;
 	margin-left: 20px;
-	font-size: 1.5em;
+	font-size: 1em;
 	font-style: oblique;
 }
 
@@ -49,8 +49,12 @@ nav li:first-child {
 	margin-left: 0px;
 }
 
+nav li:hover {
+	text-decoration: underline;
+}
+
 nav h1 {
-	font-size: 4.3em;
+	font-size: 3em;
 }
 
 nav .mainPage {
@@ -96,11 +100,11 @@ h3 {
 }
 
 .blogs h2 {
-	font-size: 2.7em;
+	font-size: 2em;
 }
 
 .blogs h3 {
-	font-size: 2em;
+	font-size: 1.5em;
 }
 
 .blogs p {
