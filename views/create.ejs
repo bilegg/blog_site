@@ -9,11 +9,16 @@
         <div class="create-blog content">
             <form action="/blogs" method="POST">
                 <label for="title">Blog title:</label>
-                <input name="title" type="text" id="title" required />
+                <input name="title" type="text" autocomplete="off" required />
                 <label for="snippet">Blog snippet:</label>
-                <input name="snippet" type="text" id="snippet" required />
+                <input name="snippet" type="text" autocomplete="off" required />
                 <label for="body">Blog body:</label>
-                <textarea name="body" type="text" id="body" required></textarea>
+                <textarea
+                    name="body"
+                    type="text"
+                    autocomplete="off"
+                    required
+                ></textarea>
                 <div class="button-holder">
                     <button type="submit">Submit</button>
                 </div>

@@ -12,11 +12,21 @@ p, h1, h2, h3, a, ul {
 	color: #222;
 }
 
+/* element sizing and inheritance */
+
+html {
+	box-sizing: border-box;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
 /* nav & footer styles */
 
 nav {
 	display: flex;
-	margin-bottom: 60px;
+	margin-bottom: 30px;
 	padding-bottom: 10px;
 	text-transform: uppercase;
 	justify-content: center;
@@ -32,7 +42,7 @@ nav .line-break {
 	margin-bottom: 10px;
 }
 
-ul {
+nav ul {
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-end;
@@ -73,17 +83,13 @@ footer {
 	margin: 80px auto 20px;
 }
 
-h2 {
+nav h2 {
 	margin-bottom: 40px;
 }
 
-h3 {
+nav h3 {
 	text-transform: capitalize;
 	margin-bottom: 8px;
-}
-
-.content {
-	margin-left: 20px;
 }
 
 /* index styles */
@@ -95,7 +101,7 @@ h3 {
 	padding-left: 30px
 }
 
-.blogs a:hover h3{
+.blogs a:hover h3 {
 	color: crimson;
 }
 
@@ -112,35 +118,71 @@ h3 {
 }
 
 /* details styles */
-.details{
+
+.details {
 	text-align: center;
 	overflow: auto;
 }
-.details h2{
-	font-size: 3em;
-}
 
-.details p{
+.details h1 {
 	font-size: 2em;
 }
 
-.delete{
-	display: inline-block;
-	border: 2px solid black;
-	border-radius: 5px;
-	padding: 15px;
-	margin-top: 50px;
-	width: 80px;
-	text-align: center;
+.details h2 {
 	font-size: 1.5em;
 }
 
-.delete:hover{
-	background-color: rgb(219, 215, 215);
-	font-weight: bolder;
-	cursor: pointer;
+.details h3 {
+	font-size: 1.3em;
 }
 
+.details p {
+	font-size: 1.2em;
+}
+
+.details textarea {
+	width: 400px;
+	min-height: 120px;
+	max-height: 250px;
+	resize: vertical;
+}
+
+.details input, .details textarea {
+	margin: 10px 0;
+	padding: 8px;
+}
+
+.details h1, .details h2, .details h3, .details input {
+	margin-bottom: 40px;
+}
+
+.details .actions {
+	display: flex;
+	justify-content: center;
+}
+
+.details button {
+	font-family: inherit;
+	font-size: inherit;
+}
+
+.actions div, .details button {
+	display: inline-block;
+	border: 2px solid black;
+	border-radius: 5px;
+	padding: 10px;
+	margin: 10px;
+	text-align: center;
+	width: 80px;
+	background-color: black;
+	color: white;
+}
+
+.actions div:hover, .details button:hover {
+	background-color: white;
+	color: black;
+	cursor: pointer;
+}
 
 /* create styles */
 
@@ -161,8 +203,10 @@ h3 {
 	margin-top: 24px;
 }
 
-textarea {
-	height: 120px;
+.create-blog textarea {
+	min-height: 120px;
+	max-height: 250px;
+	resize: vertical;
 }
 
 .create-blog button {

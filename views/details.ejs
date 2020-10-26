@@ -7,30 +7,97 @@
         <%- include('./partials/nav.ejs') %>
 
         <div class="details content">
-            <h2><%= blog.title %></h2>
-            <p><%= blog.body %></p>
-            <a class="delete" data-doc="<%= blog._id %>">DELETE</a>
+            <p>Title</p>
+            <h1><%= blog.title %></h1>
+            <p>Snippet</p>
+            <h2><%= blog.snippet %></h2>
+            <p>Body</p>
+            <h3><%= blog.body %></h3>
+        </div>
+
+        <div class="details editForm" hidden="true">
+            <p>Title</p>
+            <input
+                name="title"
+                type="text"
+                value="<%= blog.title %>"
+                autocomplete="off"
+                required
+            />
+            <p>Snippet</p>
+            <input
+                name="snippet"
+                type="text"
+                value="<%= blog.snippet %>"
+                autocomplete="off"
+                required
+            />
+            <p>Body</p>
+            <textarea name="body" type="text" autocomplete="off" required>
+<%= blog.body %></textarea
+            >
+            <br />
+            <button type="submit">SAVE</button>
+        </div>
+
+        <div class="details actions">
+            <div class="editButton">EDIT</div>
+            <div class="deleteButton" data-id="<%= blog._id %>">DELETE</div>
         </div>
 
         <%- include('./partials/footer.ejs') %>
 
+        <script type="text/javascript" src="/js/classes/Request.js"></script>
+        <script type="text/javascript" src="/js/classes/Blog.js"></script>
+        <script type="text/javascript" src="/js/sendRequest.js"></script>
         <script>
-            const deleteButton = document.querySelector("a.delete");
+            const deleteButton = document.querySelector("div.deleteButton");
+            const editButton = document.querySelector("div.editButton");
+            const saveButton = document.querySelector("button");
+            let isEditing = false;
 
             deleteButton.addEventListener("click", (e) => {
-				const endpoint = `/blogs/${deleteButton.dataset.doc}`
+                const request = new Req(
+                    "delete",
+                    `/blogs/${deleteButton.dataset.id}`,
+                    {}
+                );
 
-				fetch(endpoint, {
-					method: 'DELETE'
-				})
-				.then(response => response.json())
-				.then(data => {
-					window.location.href = data.redirect
-				})
-				.catch(err => {
-					console.log(err)
-				})
-			});
+                sendRequest(request, (data) => {
+                    window.location.href = data.redirect;
+                });
+            });
+
+            saveButton.addEventListener("click", (e) => {
+                const blog = new Blog(
+                    deleteButton.dataset.id,
+                    document.getElementsByName("title")[0].value,
+                    document.getElementsByName("snippet")[0].value,
+                    document.getElementsByName("body")[0].value
+                );
+                const request = new Req(
+                    "put",
+                    `/blogs/${deleteButton.dataset.id}`,
+                    blog
+                );
+
+                sendRequest(request, (data) => {
+                    window.location.href = data.redirect;
+                });
+            });
+
+            // switching between editing and viewing
+            editButton.addEventListener("click", (e) => {
+                if (isEditing) {
+                    document.querySelector("div.editForm").hidden = true;
+                    document.querySelector("div.content").hidden = false;
+                } else {
+                    document.querySelector("div.editForm").hidden = false;
+                    document.querySelector("div.content").hidden = true;
+                }
+
+                isEditing = !isEditing;
+            });
         </script>
     </body>
 </html>

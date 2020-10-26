@@ -3,7 +3,7 @@ const app = express();
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const Blog = require("./models/blog");
-const { render } = require("ejs");
+const bodyParser = require("body-parser");
 
 // connect to mongodb
 const dbURI =
@@ -22,6 +22,8 @@ mongoose
         console.log(err);
     });
 
+// middlewares
+app.use(bodyParser.json());
 app.set("view engine", "ejs");
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: true })); // allowing passing of form data
@@ -89,6 +91,23 @@ app.delete("/blogs/:id", (req, res) => {
     const id = req.params.id;
 
     Blog.findByIdAndDelete(id)
+        .then((result) => {
+            res.json({ redirect: "/blogs" });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+});
+
+// update blog
+app.put("/blogs/:id", (req, res) => {
+    const blog = req.body;
+
+    console.log("update: ", blog);
+    Blog.updateOne(
+        { _id: blog.id },
+        { title: blog.title, snippet: blog.snippet, body: blog.body }
+    )
         .then((result) => {
             res.json({ redirect: "/blogs" });
         })
